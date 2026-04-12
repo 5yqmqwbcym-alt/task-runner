@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import TaskList from './components/TaskList';
+import Hero from './components/Hero';
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -45,7 +46,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>📋 Task Keeper</h1>
+        <Hero />
         
         <div className="input-container">
           <input

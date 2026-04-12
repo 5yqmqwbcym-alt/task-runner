@@ -28,9 +28,9 @@ describe('App Component', () => {
     localStorage.clear();
   });
 
-  test('renders Task Keeper heading', () => {
+  test('renders Task Runner heading', () => {
     render(<App />);
-    const headingElement = screen.getByText(/Task Keeper/i);
+    const headingElement = screen.getByText(/Task Runner/i);
     expect(headingElement).toBeInTheDocument();
   });
 
