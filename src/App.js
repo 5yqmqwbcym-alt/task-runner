@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import TaskList from './components/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -38,12 +39,6 @@ function App() {
   const clearCompleted = () => {
     setTasks(tasks.filter(task => !task.completed));
   };
-
-  const filteredTasks = tasks.filter(task => {
-    if (filter === 'active') return !task.completed;
-    if (filter === 'completed') return task.completed;
-    return true;
-  });
 
   const activeCount = tasks.filter(t => !t.completed).length;
 
@@ -85,26 +80,12 @@ function App() {
           </button>
         </div>
 
-        <div className="task-list">
-          {filteredTasks.length === 0 ? (
-            <p className="empty-state">No tasks yet. Add one above!</p>
-          ) : (
-            filteredTasks.map(task => (
-              <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => toggleTask(task.id)}
-                  className="task-checkbox"
-                />
-                <span className="task-text">{task.text}</span>
-                <button onClick={() => deleteTask(task.id)} className="delete-btn">
-                  🗑️
-                </button>
-              </div>
-            ))
-          )}
-        </div>
+        <TaskList 
+          tasks={tasks}
+          filter={filter}
+          onToggle={toggleTask}
+          onDelete={deleteTask}
+        />
 
         <div className="footer">
           <span>{activeCount} task{activeCount !== 1 ? 's' : ''} left</span>
