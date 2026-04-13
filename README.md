@@ -1,6 +1,6 @@
-# Task Keeper
+# Task Runner
 
-A simple, elegant task management app built with React.
+A simple, elegant task management app built with React and Tailwind CSS.
 
 ## Features
 
@@ -38,7 +38,7 @@ Builds the app for production to the `build` folder.
 ## Technologies
 
 - React
-- CSS3
+- Tailwind CSS
 - LocalStorage API
 
 ## License

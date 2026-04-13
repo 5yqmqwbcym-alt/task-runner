@@ -274,7 +274,7 @@ describe('App Component', () => {
     expect(screen.getByText('Existing task')).toBeInTheDocument();
   });
 
-  test('applies correct CSS class to completed tasks', async () => {
+  test('applies correct styling to completed tasks', async () => {
     render(<App />);
     const input = screen.getByPlaceholderText(/What needs to be done?/i);
     const addButton = screen.getByText(/Add Task/i);
@@ -282,22 +282,23 @@ describe('App Component', () => {
     await userEvent.type(input, 'Task to check class');
     fireEvent.click(addButton);
 
-    const taskItem = screen.getByText('Task to check class').closest('.task-item');
-    expect(taskItem).not.toHaveClass('completed');
+    const taskText = screen.getByText('Task to check class');
+    expect(taskText).not.toHaveClass('line-through');
 
     const checkbox = screen.getByRole('checkbox');
     fireEvent.click(checkbox);
 
-    expect(taskItem).toHaveClass('completed');
+    expect(taskText).toHaveClass('line-through');
   });
 
-  test('active filter button has active class when selected', () => {
+  test('active filter button has correct styling when selected', () => {
     render(<App />);
     const activeButton = screen.getByText('Active');
 
     fireEvent.click(activeButton);
 
-    expect(activeButton).toHaveClass('active');
+    expect(activeButton).toHaveClass('bg-primary');
+    expect(activeButton).toHaveClass('text-white');
   });
 
   test('displays singular "task" for count of 1', async () => {

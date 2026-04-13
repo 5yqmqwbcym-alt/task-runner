@@ -8,21 +8,37 @@ function TaskList({ tasks, filter, onToggle, onDelete }) {
   });
 
   if (filteredTasks.length === 0) {
-    return <p className="empty-state">No tasks yet. Add one above!</p>;
+    return (
+      <p className="text-center text-gray-400 py-10 px-10 text-base m-0">
+        No tasks yet. Add one above!
+      </p>
+    );
   }
 
   return (
-    <div className="task-list">
+    <div className="mb-5 max-h-96 overflow-y-auto px-10">
       {filteredTasks.map(task => (
-        <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+        <div 
+          key={task.id} 
+          className={`flex items-center px-4 py-3.5 border-b border-gray-100 transition-colors hover:bg-gray-50 ${
+            task.completed ? 'opacity-60' : ''
+          }`}
+        >
           <input
             type="checkbox"
             checked={task.completed}
             onChange={() => onToggle(task.id)}
-            className="task-checkbox"
+            className="w-5 h-5 mr-4 cursor-pointer accent-primary"
           />
-          <span className="task-text">{task.text}</span>
-          <button onClick={() => onDelete(task.id)} className="delete-btn">
+          <span className={`flex-1 text-base text-gray-800 ${
+            task.completed ? 'line-through text-gray-400' : ''
+          }`}>
+            {task.text}
+          </span>
+          <button 
+            onClick={() => onDelete(task.id)}
+            className="bg-transparent border-none text-lg cursor-pointer opacity-60 transition-opacity hover:opacity-100"
+          >
             🗑️
           </button>
         </div>
