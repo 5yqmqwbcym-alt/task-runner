@@ -2,6 +2,14 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
+// Mock react-router-dom
+jest.mock('react-router-dom', () => ({
+  BrowserRouter: ({ children }) => <div>{children}</div>,
+  Routes: ({ children }) => <div>{children}</div>,
+  Route: ({ element }) => element,
+  Link: ({ children, to }) => <a href={to}>{children}</a>,
+}));
+
 // Mock localStorage
 const localStorageMock = (() => {
   let store = {};
